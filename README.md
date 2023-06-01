@@ -5,12 +5,12 @@
 
 # lcod-backend
 
-This project defines a [Svelte][1] [backend](https://github.com/sveltejs/svelte-preprocess/) for `.lcod` folders containing a `server.js` file.
+This project defines a [Svelte][1] [backend](https://github.com/sveltejs/svelte-preprocess/) for `.lcod` folders containing a `server.mjs` file.
 
 ```mermaid
 flowchart LR
-    A(Imported\nHelloWorld.lcod) -->|lcod-backend\nif exists server.js| B(Register)
-    B -->|handle\nwith server.js|C(Backend API\n/lcod/HelloWorld)
+    A(Imported\nHelloWorld.lcod) -->|lcod-backend\nif exists server.mjs| B(Register)
+    B -->|handle\nwith server.mjs|C(Backend API\n/lcod/HelloWorld)
     A -->|import lcod-backend/client| D(Client\ncode)
     D -->|call|C
     C -->|response|D
@@ -18,7 +18,7 @@ flowchart LR
 
 ## The server.js file
 
-A `server.js` file can be defined in a `.lcod` component and it's used to define the backend code of the component, simply invoked by the `call` function.
+A `server.mjs` file can be defined in a `.lcod` component and it's used to define the backend code of the component, simply invoked by the `call` function.
 
 ## Usage
 
@@ -39,7 +39,7 @@ export default defineConfig({
 });
 ```
 
-### MyComp.lcod/server.js
+### MyComp.lcod/server.mjs
 
 You have to `export default` a `function` that take one `data` object in argument and return a value. This function can be `async` and use `await`.
 
