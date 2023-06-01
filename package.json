@@ -19,8 +19,9 @@
 		"check": "svelte-kit sync && svelte-check --tsconfig ./jsconfig.json",
 		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./jsconfig.json --watch",
 		"test": "playwright test",
-		"test:docker": "docker run --rm -v .:/work -w /work mcr.microsoft.com/playwright:v1.33.0-jammy npm run test",
-		"test:docker-update": "docker run --rm -v .:/work -w /work mcr.microsoft.com/playwright:v1.33.0-jammy npm run test -- -u",
+		"test:preview": "npm run build && npm run preview -- --host --port 5173",
+		"test:docker": "docker run --add-host=host:host-gateway --rm -v .:/work -w /work mcr.microsoft.com/playwright:v1.34.3-jammy npm run test",
+		"test:docker-update": "docker run --add-host=host:host-gateway --rm -v .:/work -w /work mcr.microsoft.com/playwright:v1.34.3-jammy npm run test -- -u",
 		"test:unit": "vitest",
 		"lint": "prettier --plugin-search-dir . --check . && eslint .",
 		"format": "prettier --plugin-search-dir . --write ."

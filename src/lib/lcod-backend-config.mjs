@@ -65,7 +65,7 @@ export function lcodBackendConfig() {
 					const srvPath = path.join(importer, '..', source, 'server.mjs');
 					try {
 						await fs.access(srvPath, fs.constants.F_OK);
-						const curPath = path.resolve('../src/lib');
+						const curPath = path.resolve('./.lcod-backend/');
 						const relative = `./${normalizePath(path.relative(curPath, srvPath))}`;
 						allServer.set(m[1], relative);
 						await doWrite();
