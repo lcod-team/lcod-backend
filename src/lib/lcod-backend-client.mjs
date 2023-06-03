@@ -1,7 +1,8 @@
-export const lcodName = '';
-
-export async function call(params, options, lcod) {
-	const result = await fetch(`/lcod/${lcod ?? lcodName}`, {
+export async function call(params, options, lcod = '') {
+	if (!lcod) {
+		return 'n/a';
+	}
+	const result = await fetch(`/lcod/${lcod}`, {
 		method: 'post',
 		body: JSON.stringify(params ?? {})
 	});

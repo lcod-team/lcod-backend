@@ -52,13 +52,7 @@ export function lcodBackendConfig() {
 				let m;
 				if (source == 'lcod-backend/client' || source == '$lib/lcod-backend-client.mjs') {
 					if ((m = importer.match(/.*\/(.*?)\.lcod\/.*?\.svelte$/))) {
-						const resolved = await this.resolve(source, importer, { skipSelf: true });
-						if (resolved) {
-							return {
-								id: `${resolved.id}?lcod=${m[1]}`,
-								meta: { lcod: m[1] }
-							};
-						}
+						return `lcod/${m[1]}/${source}`;
 					}
 				}
 				if ((m = source.match(/\/(.*?)\.lcod$/))) {
@@ -76,11 +70,15 @@ export function lcodBackendConfig() {
 				return null;
 			}
 		},
-		transform: {
-			async handler(code, id) {
+		load: {
+			async handler(id) {
 				let m;
-				if ((m = id.match(/lcod-backend-client\.mjs\?lcod=(.*)/))) {
-					code = code.replace(/(lcodName = )''/, `$1'${m[1]}'`);
+				if ((m = id.match(/^lcod\/(.*?)\/(.*)/))) {
+					const code = `import { call as call_ } from '${m[2]}';\n`
+						+ `export const lcodName = '${m[1]}';\n`
+						+ `export async function call(params, options) {\n`
+						+ `  return await call_(params, options, lcodName);\n`
+						+ `}`;
 					return code;
 				}
 				return null;

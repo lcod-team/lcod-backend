@@ -12,8 +12,12 @@ export async function lcodHandle({ event, resolve }) {
 			params = {};
 		}
 		const comp = m[1];
-		const result = await backends[comp](params);
-		return json(result);
+		if (comp in backends) {
+			const result = await backends[comp](params);
+			return json(result);
+		} else {
+			return json('n/a');
+		}
 	}
 
 	const response = await resolve(event);

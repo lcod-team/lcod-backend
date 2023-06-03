@@ -1,5 +1,5 @@
 {
-	"name": "lcod-backend",
+	"name": "@lcod/backend",
 	"version": "0.0.1",
 	"contributors": [
 		{
@@ -65,10 +65,7 @@
 		"vite": "^4.3.0",
 		"vitest": "^0.25.3"
 	},
-	"svelte": [
-		"./dist/index.js",
-		"./dist/lcod-backend-client.mjs"
-	],
+	"svelte": "./dist/index.js",
 	"types": "./dist/index.d.ts",
 	"type": "module"
 }
