@@ -50,7 +50,7 @@ export function lcodBackendConfig() {
 			order: 'pre',
 			async handler(source, importer, options) {
 				let m;
-				if (source == 'lcod-backend/client' || source == '$lib/lcod-backend-client.mjs') {
+				if (source == '@lcod/backend/client' || source == '$lib/lcod-backend-client.mjs') {
 					if ((m = importer.match(/.*\/(.*?)\.lcod\/.*?\.svelte$/))) {
 						return `lcod/${m[1]}/${source}`;
 					}
