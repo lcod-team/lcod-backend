@@ -55,8 +55,9 @@ export function lcodBackendConfig() {
 						return `lcod/${m[1]}/${source}`;
 					}
 				}
-				if ((m = source.match(/\/(.*?)\.lcod$/))) {
-					const srvPath = path.join(importer, '..', source, 'server.mjs');
+				if ((m = source.match(/\/([^/]*?)\.lcod$/))) {
+					let { id } = await this.resolve(source, importer, { skipSelf: true });
+					const srvPath = path.join(id, '../server.mjs');
 					try {
 						await fs.access(srvPath, fs.constants.F_OK);
 						const curPath = path.resolve('./.lcod-backend/');
@@ -64,7 +65,7 @@ export function lcodBackendConfig() {
 						allServer.set(m[1], relative);
 						await doWrite();
 					} catch (e) {
-						console.log('lcod-backend-config error: ' + e);
+						//console.log('lcod-backend-config error: ' + e);
 					}
 				}
 				return null;
