@@ -55,7 +55,7 @@ export function lcodBackendConfig() {
 						return `lcod/${m[1]}/${source}`;
 					}
 				}
-				if ((m = source.match(/\/([^/]*?)\.lcod$/))) {
+				if ((m = source.match(/.*\/(.*?)\.lcod$/))) {
 					let { id } = await this.resolve(source, importer, { skipSelf: true });
 					const srvPath = path.join(id, '../server.mjs');
 					try {
