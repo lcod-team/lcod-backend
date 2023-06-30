@@ -1,4 +1,4 @@
-import backends from '$lib/../../.lcod-backend/backends.d.mjs';
+import backends from '$lib/../../.lcod-backend/backends.mjs';
 import { json } from '@sveltejs/kit';
 
 /** @type {import('@sveltejs/kit').Handle} */

@@ -7,7 +7,7 @@ import { normalizePath } from 'vite';
  * @returns {import('vite').Plugin}
  */
 export function lcodBackendConfig() {
-	const backendsFile = './.lcod-backend/backends.d.mjs';
+	const backendsFile = './.lcod-backend/backends.mjs';
 	(async () => {
 		await fs.mkdir('./.lcod-backend', {
 			recursive: true
