@@ -1,7 +1,7 @@
 import backends from '$lib/../../.lcod-backend/backends.mjs';
 import { json } from '@sveltejs/kit';
 
-/** @type {import('@sveltejs/kit').Handle} */
+/** @type {import('@sveltejs/kit').Handle | null} */
 export async function lcodHandle({ event, resolve }) {
 	let m;
 	if ((m = event.url.pathname.match(/lcod\/(.*?)(?:$|\/)/))) {
